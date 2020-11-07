@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>boot</title>
+    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/content.css">
+
+</head>
+<body>
+<div class="my-body">
+    <div class="panel panel-default">
+        <div class="panel-heading">登录日志</div>
+        <div class="panel-body"></div>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="active">
+            <td>序号</td>
+            <td>用户名</td>
+            <td>用户ip</td>
+            <td>用户本机名</td>
+            <td>登录时间</td>
+        </tr>
+        </thead>
+        <tr v-for="data in list">
+            <td>{{data.id}}</td>
+            <td>{{data.user_name}}</td>
+            <td>{{data.ip}}</td>
+            <td>{{data.name}}</td>
+            <td>{{data.time}}</td>
+        </tr>
+    </table>
+</div>
+
+    <script src="plugins/jQuery/jquery-1.12.4.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/Vue/vue.js"></script>
+    <script src="js/information.js"></script>
+</body>
+</html>

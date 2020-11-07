@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>boot</title>
+		<link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="plugins/zui/css/zui.min.css" rel="stylesheet">
+		<link href="plugins/sweet/css/sweetalert.css" rel="stylesheet">
+
+		<style>
+			.my-body>.panel {
+				margin-bottom: 5px;
+			}
+			.my-body > table {
+				margin-bottom: 5px;
+			}
+			.my-page {
+				text-align: right;
+			}
+			.my-page nav ul {
+				margin: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="my-body">
+			<div class="modal fade" id="editMo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" aria-label="Close" @click="hideMo()"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="myModalLabel">数据编辑</h4>
+						</div>
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="editNo">工号</label>
+								<input type="text" class="form-control" id="editNo" placeholder="请输入工号" v-model="ed.person_no">
+							</div>
+							<div class="form-group">
+							<label for="editPassword">昵称</label>
+							<input type="pass" class="form-control" id="editPassword" placeholder="请输入昵称" v-model="ed.person_nickname">
+							</div>
+							<div class="form-group">
+								<label for="editNickname">密码</label>
+								<input type="password" class="form-control" id="editNickname" placeholder="请输入密码" v-model="ed.person_password">
+							</div>
+
+							<div class="form-group">
+								<label for="editDp_no">部门编号</label>
+								<input type="text" class="form-control" id="editDp_no" placeholder="请输入部门" v-model="ed.department_no">
+							</div>
+							<div class="form-group">
+								<label for="editname">姓名</label>
+								<input type="text" class="form-control" id="editname" placeholder="请输入姓名" v-model="ed.person_name">
+							</div>
+							<div class="form-group">
+								<label for="editSex">性别</label>
+								<input type="text" class="form-control" id="editSex" placeholder="请输入性别" v-model="ed.person_sex">
+							</div>
+							<div class="form-group">
+								<label for="editBirthday">生日</label>
+								<input type="text" class="form-control" id="editBirthday" placeholder="请输入生日" v-model="ed.person_birthday">
+							</div>
+							<div class="form-group">
+								<label for="editPhone">电话</label>
+								<input type="text" class="form-control" id="editPhone" placeholder="请输入电话" v-model="ed.person_phone">
+							</div>
+							<div class="form-group">
+								<label for="editEmail">邮箱</label>
+								<input type="email" class="form-control" id="editEmail" placeholder="请输入邮箱" v-model="ed.person_email">
+							</div>
+							<div class="form-group">
+								<label for="editState">用户状态</label>
+								<input type="email" class="form-control" id="editState" placeholder="请输入用户状态" v-model="ed.person_state">
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" @click="hideMo()">取消</button>
+							<button type="button" class="btn btn-primary" @click="save()">保存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel panel-default">
+				<div class="panel-heading">用户数据列表</div>
+				<div class="panel-body">
+					<form class="form-inline">
+						<button type="button" class="btn btn-success" @click="openMo()">新增</button>
+						<div class="form-group">
+							<label for="sdaccount">帐户名</label>
+							<input type="text" class="form-control" id="sdaccount" placeholder="请输入帐户名" v-model="sd.account">
+						</div>
+						<button type="button" class="btn btn-default" @click="getData(1)">搜索</button>
+					</form>
+				</div>
+			</div>
+			<table class="table table-bordered table-hover">
+				<tr class="active">
+					<td>ID</td>
+					<td>昵称</td>
+					<td>部门</td>
+					<td>姓名</td>
+					<td>性别</td>
+					<td>生日</td>
+					<td>电话</td>
+					<td>邮箱</td>
+					<td>用户状态</td>
+					<td>操作</td>
+				</tr>
+				<tr v-for="data in dataList">
+					<td>{{data.person_no}}</td>
+					<td>{{data.person_nickname}}</td>
+					<td>{{data.department_no}}</td>
+					<td>{{data.person_name}}</td>
+					<td>{{data.person_sex}}</td>
+					<td>{{data.person_birthday}}</td>
+					<td>{{data.person_phone}}</td>
+					<td>{{data.person_email}}</td>
+					<td>
+<!--						<label>(({{data.person_state}} ==1)?启用：禁用)</label>-->
+						<div class="switch"><input type="checkbox" checked="checked" id="ck" @click="changeState(data.person_no,data.person_state)" v-model="data.person_state"><label></label></div>
+					</td>
+					<td>
+						<button type="button" class="btn btn-link" @click="edit(data)">编辑</button>
+						<button type="button" class="btn btn-link" @click="del(data.person_no)">删除</button>
+					</td>
+				</tr>
+			</table>
+			<div class="my-page">
+				<nav aria-label="Page navigation">
+					<ul class="pagination">
+						<li>
+							<a aria-label="Previous" @click="goUp()">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<li v-for="page in page.list">
+							<a @click="getData(page)">{{page}}</a>
+						</li>
+						<li>
+							<a aria-label="Next" @click="goDown()">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+		<script src="plugins/jQuery/jquery-1.12.4.min.js"></script>
+		<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+		<script src="plugins/Vue/vue.js"></script>
+		<script src="plugins/sweet/js/sweetalert-dev.js"></script>
+		<script src="js/account.js"></script>
+	</body>
+</html>

@@ -1,0 +1,12 @@
+.my-body>.panel {
+    margin-bottom: 5px;
+}
+.my-body > table {
+    margin-bottom: 5px;
+}
+.my-page {
+    text-align: right;
+}
+.my-page nav ul {
+    margin: 0;
+}

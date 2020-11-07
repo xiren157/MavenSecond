@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/register.css">
+	<link rel="stylesheet" type="text/css" href="css/component.css">
+	<link href="plugins/sweet/css/sweetalert.css" rel="stylesheet">
+
+</head>
+<body>
+	<div class="register_page">
+		<div class="demo-1">
+			<div>
+				<div id="large-header" class="large-header">
+					<canvas id="demo-canvas"></canvas>
+					<h1 class="main-title" id="localtime">显示时间</h1>
+					<div class="title_form">
+						<div class="register_con">
+						    <!-- 注册表 -->
+						    <div class="r_con fr">
+						        <div class="reg_title">
+						            <h1>用户注册</h1>
+						            <a href="login.html" target="_parent">登录</a>
+						        </div>
+						        <div class="reg_form">
+						            <form>
+						                <ul>
+						                    <!-- 用户名 -->
+						                    <li>
+						                        <label for="user_name">用户名:</label>
+						                        <input type="text" name="user_name" id="user_name" placeholder="请输入您的用户名" onchange="checkAccount()">
+						                        <span class="error_tip">提示信息</span>
+						                        <!-- 用于后端数据库判断 -->
+						                        <div class="err">
+						                            <span class="glyphicon glyphicon glyphicon-remove" aria-hidden="true"></span> 用户名已存在！！
+						                        </div>
+						                        <div class="suc">
+						                            <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span> 恭喜您，用户名可用。
+						                        </div>
+						                    </li>
+						                    <!-- 密码 -->
+						                    <li>
+						                        <label for="pwd">密码:</label>
+						                        <input type="password" name="pwd" id="pwd" placeholder="请输入密码">
+						                        <span class="error_tip">提示信息</span>
+						                    </li>
+						                    <li>
+						                        <label for="cpwd">确认密码:</label>
+						                        <input type="password" name="cpwd" id="cpwd" placeholder="请再次输入密码">
+						                        <span class="error_tip">提示信息</span>
+						                    </li>
+						                    <!-- 邮箱 -->
+						                    <li>
+						                        <label for="email">邮箱:</label>
+						                        <input type="text" name="email" id="email" placeholder="请输入常用邮箱">
+						                        <span class="error_tip">提示信息</span>
+						                    </li>
+						                    <!-- 协议 -->
+						                    <li class="agreement">
+						                        <input type="checkbox" name="allow" id="allow">
+						                        <label>同意<a href="/download?fn=mu.txt">“用户使用协议”</a></label>
+						                        <span class="error_tip2">提示信息</span>
+						                    </li>
+						                    <li class="reg_sub">
+						                        <input type="button" value="注 册" id="SignUp" >
+						                    </li>
+						                </ul>
+						            </form>
+						        </div>
+						    </div>
+						</div>
+						<!-- 网页底部栏 -->
+						<div class="footer_reg no-mp">
+						    <div class="foot_link">
+						        <a href="#">关于我们</a>
+						        <span>|</span>
+						        <a href="#">联系我们</a>
+						        <span>|</span>
+						        <a href="#">招聘人才</a>
+						        <span>|</span>
+						        <a href="#">友情链接</a>
+						    </div>
+						    <p>Designed and built with all the love in the world by xxxx and xxxx. Maintained by the xxxx with the help of xxxx.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- /container -->
+	</div>
+	
+	
+	
+	
+
+</body>
+	
+	<script src="plugins/TweenLite/TweenLite.min.js"></script>
+	<script src="plugins/EasePack/EasePack.min.js"></script>
+	<script src="js/demo-1.js"></script>
+	<script src="js/time.js"></script>
+	<script src="plugins/jQuery/jquery-1.12.4.min.js"></script>
+	<script src="plugins/sweet/js/sweetalert-dev.js"></script>
+	<script src="js/blockcheck.js"></script><!-- 注册表检查功能 -->
+	<script src="js/usernamecheck.js"></script><!-- 用户名后台验证功能 -->
+
+</html>

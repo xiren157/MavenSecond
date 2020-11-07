@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.xiren.dao.RegisterMapper">
+    <insert id="doRegister">
+        INSERT INTO table_person (person_nickname, person_password, department_no, person_name,
+        person_sex, person_birthday, person_phone, person_email, person_state)
+        VALUES (#{nickname}, #{password}, null , null
+        , null, null, null, #{email}, 1)
+    </insert>
+</mapper>

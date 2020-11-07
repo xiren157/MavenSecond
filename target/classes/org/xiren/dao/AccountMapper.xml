@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.xiren.dao.AccountMapper">
+    <insert id="doAdd" >
+        INSERT INTO table_person (person_nickname, person_password, department_no, person_name,
+        person_sex, person_birthday, person_phone, person_email, person_state)
+        VALUES (#{nickname}, #{password}, #{dp_no}, #{name}
+        , #{sex}, #{birthday}, #{phone}, #{email}, #{state})
+    </insert>
+
+    <update id="doChangeInfromation" >
+        UPDATE table_person SET person_nickname =#{nickname}, person_password =#{password},
+         department_no =#{dp_no}, person_name =#{name}, person_sex =#{sex},
+         person_birthday =#{birthday}, person_phone =#{phone},
+         person_email =#{email}, person_state =#{state} WHERE person_no =#{no}
+    </update>
+
+    <delete id="doDel">
+        DELETE FROM table_person WHERE person_no =#{no}
+    </delete>
+
+    <update id="doChangeStateOpen">
+        UPDATE table_person SET person_state=1 WHERE person_no =#{no}
+    </update>
+
+    <update id="doChangeStateClose">
+        UPDATE table_person SET person_state=0 WHERE person_no =#{no}
+    </update>
+
+    <update id="doUpdataCodeByName">
+        UPDATE table_person SET person_password =#{password} WHERE person_nickname =#{user}
+    </update>
+
+    <update id="doUpdataCodeById">
+        UPDATE table_person SET person_password =#{password} WHERE person_no =#{user}
+    </update>
+    
+    <select id="getTableList" resultType="org.xiren.model.Tab">
+        SELECT * FROM table_department
+    </select>
+
+    <select id="getPersonList" resultType="org.xiren.model.User">
+        select * from table_person <include refid="withQuery"></include>
+    </select>
+
+    <select id="countPersonList" resultType="java.lang.Integer">
+        select count(*) from table_person <include refid="withQuery"></include>
+    </select>
+
+    <sql id="withQuery">
+        <where>
+            <if test="account != null and account != ''">
+                and account like CONCAT('%', #{account}, '%')
+            </if>
+        </where>
+    </sql>
+</mapper>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>boot</title>
+    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/content.css">
+
+</head>
+<body>
+<div class="my-body">
+    <div class="panel panel-default">
+        <div class="panel-heading">部门列表</div>
+        <div class="panel-body"></div>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="active">
+            <td>部门编号</td>
+            <td>部门名称</td>
+            <td>上级部门编号</td>
+        </tr>
+        </thead>
+        <tr v-for="data in list">
+            <td>{{data.department_no}}</td>
+            <td>{{data.department_name}}</td>
+            <td>{{data.up_id}}</td>
+        </tr>
+    </table>
+</div>
+
+    <script src="plugins/jQuery/jquery-1.12.4.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/Vue/vue.js"></script>
+    <script src="js/department.js"></script>
+</body>
+</html>

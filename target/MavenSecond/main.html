@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>管理系统</title>
+    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="bookmark" href="favicon.ico"/>
+</head>
+<body>
+<div class="main">
+    <div>
+        <nav class="navbar navbar-static-top navbar-inverse">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">管理系统</a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">欢迎您&nbsp;
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>{{user_name}} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><button url="" type="button" class="btn btn-link btn-block">&nbsp;&nbsp;个人中心</button></li>
+                                <li><button url="" type="button" class="btn btn-link btn-block">&nbsp;&nbsp;账户设置</button></li>
+        <!-- 按钮触发模态框 -->	<li><button class="btn btn-link btn-block" data-toggle="modal" data-target="#myModal">&nbsp;&nbsp;修改密码</button></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a onclick="doOutLogin()" href="#" style="text-align: center;">
+                                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>退出登录</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+
+    <div>
+        <div>
+            <div class="panel-group my_pg" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span>&nbsp;数据管理</a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <button url="department.html" type="button" class="btn btn-link btn-block">
+                                <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>&nbsp;&nbsp;部门列表</button>
+                            <button url="property.html" type="button" class="btn btn-link btn-block">
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>&nbsp;&nbsp;产品列表</button>
+                            <button type="button" class="btn btn-link btn-block">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;&nbsp;历史数据</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false"
+                               aria-controls="collapseTwo"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;用户管理</a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <button url="account-list.html" type="button" class="btn btn-link btn-block">
+                                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;用户列表</button>
+                            <button url="information.html" type="button" class="btn btn-link btn-block">
+                                <span class="glyphicon glyphicon-th" aria-hidden="true"></span>&nbsp;&nbsp;登录日志</button>
+                            <button url="" type="button" class="btn btn-link btn-block">
+                                <span class="glyphicon glyphicon-envelope " aria-hidden="true"></span>&nbsp;&nbsp;我的邮箱</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false"
+                               aria-controls="collapseThree"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span>&nbsp;系统管理</a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <button url="space.html" type="button" class="btn btn-link btn-block">
+                                <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>&nbsp;&nbsp;设备监控</button>
+                            <button url="" type="button" class="btn btn-link btn-block">
+                                <span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>&nbsp;&nbsp;系统设置</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main_body">
+            <iframe id="my_id" src="page.html" border="0" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <div class="foot_start">
+        <div class="foot_link">
+            <a href="#">关于我们</a>
+            <span>|</span>
+            <a href="#">联系我们</a>
+            <span>|</span>
+            <a href="#">招聘人才</a>
+            <span>|</span>
+            <a href="#">友情链接</a>
+        </div>
+        <p>Designed and built with all the love in the world by xxxx and xxxx. Maintained by the xxxx with the help of xxxx.</p>
+    </div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="model-cipher">
+    <div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">修改密码</h4>
+                </div>
+                <div class="form-group fg">
+                    <label for="passWord">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>密码
+                    </label>
+                    <input type="password" class="form-control" id="passWord" placeholder="请输入密码" v-model="passwd">
+                    <label for="passWordag">
+                        <span class="glyphicon glyphicon-lock" aria-hidden="true"></span>确认密码
+                    </label>
+                    <input type="password" class="form-control" id="passWordag" placeholder="请再次输入密码" v-model="agpasswd">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" @click="hideMo()">关闭</button>
+                    <button type="button" class="btn btn-primary" v-on:click="doupload()">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+
+<script src="plugins/jQuery/jquery-1.12.4.min.js"></script>
+<script src="plugins/Vue/vue.js"></script>
+<script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="js/click.js"></script><!-- 点击功能 -->
+<script src="js/outlogin.js"></script>
+<script src="js/showusername.js"></script>
+<script src="js/uploadsercet.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.xiren.dao.CheckMapper">
+
+    <select id="checkNameById" resultType="org.xiren.model.User">
+        SELECT * FROM table_person WHERE person_no =#{user}
+    </select>
+
+    <select id="checkNameByName" resultType="org.xiren.model.User">
+        SELECT * FROM table_person WHERE person_nickname =#{user}
+    </select>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.xiren.dao.LoginMapper">
+    <select id="doLoginById" resultType="org.xiren.model.User">
+        SELECT * FROM table_person WHERE person_no=#{no} AND person_password=#{password} AND person_state=1
+    </select>
+
+    <select id="doLoginByName" resultType="org.xiren.model.User">
+        SELECT * FROM table_person WHERE person_name =#{name} AND person_password=#{password} AND person_state=1
+    </select>
+</mapper>

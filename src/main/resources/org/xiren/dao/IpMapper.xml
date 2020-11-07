@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.xiren.dao.IpMapper">
+
+    <insert id="doAdd" >
+        INSERT INTO information (user_name, ip, name, time)
+        VALUES (#{user},#{localIp},#{localName},#{localTime});
+    </insert>
+
+    <select id="getIpList" resultType="org.xiren.model.Infromation">
+        SELECT * FROM information
+    </select>
+
+</mapper>

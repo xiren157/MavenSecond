@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>boot</title>
+    <link href="plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/content.css">
+
+</head>
+<body>
+<div class="my-body">
+    <div class="panel panel-default">
+        <div class="panel-heading">产品列表</div>
+        <div class="panel-body"></div>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr class="active">
+            <td>产品编号</td>
+            <td>产品名称</td>
+            <td>产品价格</td>
+            <td>类别编码</td>
+            <td>入库时间</td>
+        </tr>
+        </thead>
+        <tr v-for="data in list">
+            <td>{{data.property_no}}</td>
+            <td>{{data.property_name}}</td>
+            <td>{{data.property_price}}</td>
+            <td>{{data.category_no}}</td>
+            <td>{{data.property_import}}</td>
+        </tr>
+    </table>
+</div>
+
+    <script src="plugins/jQuery/jquery-1.12.4.min.js"></script>
+    <script src="plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script src="plugins/Vue/vue.js"></script>
+    <script src="js/property.js"></script>
+</body>
+</html>

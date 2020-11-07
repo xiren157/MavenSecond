@@ -1,0 +1,49 @@
+/* 登录界面 */
+.my_login {
+	width: 100%;
+	margin: 280px 0 0 0;
+	/*    display: flex;
+    flex-direction: column; */
+}
+
+.title {
+	text-align: center;
+	font-size: 25px;
+}
+.form-group{
+	text-align: left;
+}
+.form-group label{
+	color: #000000;
+}
+
+.my_passwd {
+	margin-top: 10px;
+	padding-top: 5px;
+	display: flow-root;
+}
+
+.err {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+}
+
+#forgetpwd {
+	float: left;
+}
+
+#register {
+	float: right;
+}
+
+.footer_log {
+	margin: 100px 0 0 0;
+	text-align: center;
+	line-height: 32px;
+	font-size: 12px;
+	border-top: 1px #cfcfcf solid;
+}
+.foot_link a{
+	color: #AFD9EE;
+}
