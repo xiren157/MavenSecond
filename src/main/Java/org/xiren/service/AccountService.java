@@ -2,6 +2,7 @@ package org.xiren.service;
 
 import org.xiren.model.Tab;
 import org.xiren.model.User;
+import org.xiren.utils.PageDate;
 import org.xiren.utils.TableData;
 
 import java.util.List;
@@ -13,17 +14,16 @@ import java.util.List;
 public interface AccountService {
     /**
      * 展示用户列表带搜索
-     * @param index
-     * @param account
+     * @param  pd
      * @return list
      */
-    TableData<User> list(int index, String account);
+    TableData<User> list(PageDate pd);
 
     /**
      * 删除账户
-     * @param id
+     * @param idList
      */
-    void doDel(int id);
+    void doDel(List<Integer> idList);
 
     /**
      * 新增修改账户

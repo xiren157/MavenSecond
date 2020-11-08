@@ -34,10 +34,15 @@ public class TableData<T> {
      */
     private List<T> dataList;
 
-    public TableData() {
+    public TableData(PageDate pd) {
+        /** 后端输出数据初始化接收前端传参*/
+        this.pageIndex = pd.getPageIndex();
+        this.pageSize = pd.getPageSize();
     }
 
-    public TableData(Integer pageIndex, Integer pageSize, Integer pageCount, Integer dataCount, List<T> dataList) {
+    public TableData(Integer pageIndex, Integer pageSize, Integer pageCount, Integer dataCount, List<T> dataList, PageDate pd) {
+        this.pageIndex = pd.getPageIndex();
+        this.pageSize = pd.getPageSize();
         this.pageIndex = pageIndex;
         this.pageSize = pageSize;
         this.pageCount = pageCount;

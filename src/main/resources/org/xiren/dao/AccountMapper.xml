@@ -19,7 +19,11 @@
     </update>
 
     <delete id="doDel">
-        DELETE FROM table_person WHERE person_no =#{no}
+        DELETE FROM table_person WHERE person_no IN (
+        <foreach collection="ids" item="id" separator=",">
+            #{id}
+        </foreach>
+        )
     </delete>
 
     <update id="doChangeStateOpen">

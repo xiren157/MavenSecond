@@ -1,5 +1,6 @@
 package org.xiren.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.transaction.annotation.Transactional;
 import org.xiren.dao.AccountMapper;
@@ -8,6 +9,7 @@ import org.xiren.model.User;
 import org.xiren.service.AccountService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.xiren.utils.PageDate;
 import org.xiren.utils.PageUtils;
 import org.xiren.utils.StrIsNumUtils;
 import org.xiren.utils.TableData;
@@ -21,24 +23,25 @@ import java.util.List;
  */
 @Service
 public class AccountServiceImpl implements AccountService {
-    @Value("${pagesize}")
-    private Integer pageSize;
 
     @Resource
     private AccountMapper mapper;
 
     @Override
-    public TableData<User> list(int index, String account) {
-        TableData<User> td = new TableData<>();
-        td.setPageSize(pageSize);
-        td.setPageIndex(index);
-        /**
-         * 调用Dao
-         */
+    public TableData<User> list(PageDate pd) {
+        /** 构造结果数据*/
+        TableData<User> td = new TableData<>(pd);
+        /** 获取参数*/
+        String account = null;
+        JSONObject sd = pd.getSearchData();
+        if(sd != null){
+            account = sd.getString("account");
+        }
+        /** 调用Dao*/
         Integer count = mapper.countPersonList(account);
         td.setDataCount(count);
         if (count > 0) {
-            List<User> list = mapper.getPersonList(account, PageUtils.getRb(pageSize, index));
+            List<User> list = mapper.getPersonList(account, PageUtils.getRb(pd));
             td.setDataList(list);
         }
         return td;
@@ -46,8 +49,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void doDel(int id) {
-        mapper.doDel(id);
+    public void doDel(List<Integer> idList) {
+        mapper.doDel(idList);
     }
 
     @Override
@@ -84,8 +87,8 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<Tab> list(int index) {
-        int offset = (index - 1) * pageSize;
-        int limit = pageSize;
+        int offset = (index - 1) * 4;
+        int limit = 4;
         RowBounds rowBounds = new RowBounds(offset, limit);
         List<Tab> list = mapper.getTableList(rowBounds);
         return list;

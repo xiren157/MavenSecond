@@ -5,9 +5,13 @@ import org.springframework.web.bind.annotation.*;
 import org.xiren.model.Tab;
 import org.xiren.model.User;
 import org.xiren.service.AccountService;
+import org.xiren.utils.PageDate;
+import org.xiren.utils.StringUtils;
 import org.xiren.utils.TableData;
+import org.xiren.utils.WebUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,24 +25,30 @@ public class AccountController {
     private AccountService as;
 
     @RequestMapping("/account-list.ajax")
-    public String accountList(Integer index, String account){
-        // 参数校验
-       if(index == null || index <= 0) {
-            index = 1;
-       }
-        // 调用Service
-        TableData<User> td = as.list(index, account);
-        // 返回值处理
-        JSONObject data = (JSONObject) JSONObject.toJSON(td);
-        return data.toString();
+    public String accountList(PageDate pd){
+        TableData<User> td = as.list(pd);
+        return WebUtils.returnData(td);
     }
 
     @RequestMapping("/account-del.ajax")
-    public String accountDel(Integer no){
-        as.doDel(no);
+    public String accountDel(String ids){
         JSONObject data = new JSONObject();
-        data.put("as", as);
-        return data.toJSONString();
+        if (StringUtils.isEmpty(ids)) {
+            data.put("type", -1);
+            return data.toString();
+        }
+
+        // 参数转换
+        String[] idArr = ids.split(",");
+        List<Integer> idList = new ArrayList<>();
+        for (String id : idArr) {
+            int i = Integer.parseInt(id);
+            idList.add(i);
+        }
+        // 调用Service
+        as.doDel(idList);
+        data.put("type", 0);
+        return data.toString();
     }
 
     @RequestMapping("/account-save.ajax")

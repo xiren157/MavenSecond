@@ -46,10 +46,10 @@ public interface AccountMapper {
 
     /**
      * 删除用户数据
-     * @param no
+     * @param ids
      * @return
      */
-    Integer doDel(@Param("no") int no);
+    Integer doDel(@Param("ids") List<Integer> ids);
 
     /**
      * 更新用户状态开启
